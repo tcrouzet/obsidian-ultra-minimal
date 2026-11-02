@@ -21,12 +21,15 @@
 
 /* Couleurs du thème ; inversion automatique des tons en mode sombre.
    Filets, contours et boutons neutres : mélanges du fond principal et du texte.
-   Focus : ton du texte discret. Survols et sélections : bleu en transparence.
+   Focus : ton du texte discret. Survols : bleu en transparence. Sélections : tons opaques de la palette.
    Charts utilise toujours l'orange Solarized pour sa couleur 5 ; cyan Solarized reste disponible sans affectation par défaut.
    Les couleurs propres aux plugins et moteurs de coloration syntaxique peuvent rester indépendantes. */
 :root {
   --screen_background: var(--solarized-base3);      /* Éditeur et lecture, panneaux latéraux gauche et droit, onglets, ruban de commandes ; texte des actions et notifications. */
   --panel_background: var(--solarized-base2);       /* Menus, fonds secondaires et lignes alternées des tableaux. */
+  --code_background: var(--solarized-base2);        /* Fond des blocs de code ; le code en ligne reste sans fond. */
+  --selection_background: var(--solarized-base1);   /* Fond opaque du texte sélectionné, y compris dans les blocs de code. */
+  --selection_text: var(--solarized-base03);        /* Texte sélectionné ; inversion automatique en sombre. */
   --background-modifier-form-field: var(--solarized-base3); /* Fond des champs de saisie. */
   --dropdown-background: var(--solarized-base3);    /* Fond des listes déroulantes. */
   --input-border-color: var(--solarized-base1);     /* Contours des champs et filets de séparation des onglets des réglages. */
@@ -37,7 +40,7 @@
   --muted_text: var(--solarized-base01);            /* Descriptions, libellés secondaires, icônes au repos, arborescence et citations. */
   --faint_text: var(--solarized-base1);             /* Texte discret, marqueurs de listes, signes Markdown et contours de focus. */
   --inverse_background: var(--solarized-base03);    /* Fond des notifications dans les deux modes ; les autres fonds sombres sont calculés par inversion. */
-  --link_color: var(--solarized-blue);              /* Liens internes et des réglages, sélection/survol en transparence, boutons d'action survolés ; couleur 1 de Charts. */
+  --link_color: var(--solarized-blue);              /* Liens internes et des réglages, survols en transparence, boutons d'action survolés ; couleur 1 de Charts. */
   --heading_color: var(--solarized-blue);           /* Titres H1-H6 et titre de note, curseur, liens survolés et variations de l'accent ; couleur 7 de Charts. */
   --external_link_color: var(--solarized-blue);     /* Liens externes en édition et lecture ; couleur 6 de Charts. */
   --action_color: var(--solarized-orange);          /* Boutons d'action (.mod-cta), cases cochées, interrupteurs actifs et contrôles utilisant l'accent Obsidian. */

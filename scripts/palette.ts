@@ -51,8 +51,9 @@ export function compilePalette(css: string): string {
     "dropdown-border-color-hover": "dropdown-border-color-hover",
     "background-modifier-border-focus": "faint_text",
     "text-normal": "text_color", "text-muted": "muted_text", "text-faint": "faint_text",
+    "text-selection": "selection_background", "text-selection-foreground": "selection_text",
     "text-blockquote": "muted_text", "code-normal": "muted_text",
-    "code-background": "panel_background", "input-border-color": "input-border-color",
+    "code-background": "code_background", "input-border-color": "input-border-color",
     "input-border-color-hover": "input-border-color-hover",
     "metadata-label-text-color": "yaml_key_color", "metadata-input-text-color": "yaml_value_color",
   };
@@ -88,7 +89,6 @@ ${Object.entries(neutral).map(([name, role]) => `  --${name}: var(--${resolve(ro
   --background-modifier-active-hover: var(--background-modifier-hover);
   --interactive-normal: ${dark ? "var(--background-modifier-hover)" : "var(--background-modifier-border)"};
   --interactive-hover: var(--background-modifier-border);
-  --text-selection: rgba(var(--color-blue-rgb), 0.2);
   --text-highlight-bg: rgba(var(--color-yellow-rgb), 0.25);
 }`;
   }).join("\n")}

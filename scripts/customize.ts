@@ -101,6 +101,10 @@ body {
   --table-add-button-border-width: 0;
 }
 
+body ::selection {
+  color: var(--text-selection-foreground);
+}
+
 :is(
   input:not([type]),
   input[type="text"], input[type="search"], input[type="email"],
