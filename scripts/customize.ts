@@ -1,16 +1,114 @@
 export function customize(): string {
   return `
+/* @settings
+
+name: Ultra Minimal
+id: ultra-minimal
+settings:
+  - id: typography
+    title: Typography
+    type: heading
+    level: 2
+  - id: um-font-text-size
+    title: Body text size
+    description: Default size of the note text.
+    type: variable-number-slider
+    default: 23
+    min: 16
+    max: 30
+    step: 1
+    format: px
+  - id: um-text-width
+    title: Text column width
+    description: Maximum width when Readable line length is enabled.
+    type: variable-number-slider
+    default: 700
+    min: 480
+    max: 1000
+    step: 20
+    format: px
+  - id: um-paragraph-spacing
+    title: Paragraph spacing
+    description: Vertical spacing between paragraphs.
+    type: variable-number-slider
+    default: 1.75
+    min: 0.5
+    max: 2.5
+    step: 0.05
+    format: rem
+  - id: headings
+    title: Headings
+    type: heading
+    level: 2
+  - id: um-monochrome-headings
+    title: Monochrome headings
+    description: Use the note title color for every heading instead of the six-level accent palette.
+    type: class-toggle
+    default: false
+  - id: um-heading-color-intensity
+    title: Heading color intensity
+    description: Mix each heading accent with the body text color. Lower values are more subtle.
+    type: variable-number-slider
+    default: 50
+    min: 20
+    max: 80
+    step: 5
+    format: '%'
+  - id: settings-interface
+    title: Settings interface
+    type: heading
+    level: 2
+  - id: um-settings-row-spacing
+    title: Settings row spacing
+    description: Vertical padding around individual settings.
+    type: variable-number-slider
+    default: 0.9
+    min: 0.5
+    max: 1.5
+    step: 0.1
+    format: em
+  - id: navigation
+    title: File explorer selection
+    type: heading
+    level: 2
+  - id: um-nav-active-tint
+    title: Selected item tint
+    description: Background tint behind the active file or folder.
+    type: variable-number-slider
+    default: 9
+    min: 4
+    max: 20
+    step: 1
+    format: '%'
+  - id: um-nav-active-indicator-width
+    title: Active item indicator
+    description: Width of the accent line on the selected file or folder.
+    type: variable-number-slider
+    default: 2
+    min: 0
+    max: 4
+    step: 1
+    format: px
+
+*/
 body {
   --font-text-theme: "SF Mono", SFMono-Regular, ui-monospace, Consolas, "DejaVu Sans Mono", monospace;
   --font-editor-theme: var(--font-text-theme);
-  --font-text-size: 23px;
+  --um-font-text-size: 23px;
+  --font-text-size: var(--um-font-text-size);
   --font-ui-smaller: 11px;
-  --file-line-width: var(--text_max_width);
+  --um-text-width: var(--text_max_width);
+  --file-line-width: var(--um-text-width);
+  --um-paragraph-spacing: 1.75rem;
+  --p-spacing: var(--um-paragraph-spacing);
+  --um-heading-color-intensity: 50%;
+  --um-settings-row-spacing: 0.9em;
+  --um-nav-active-tint: 9%;
+  --um-nav-active-indicator-width: 2px;
   --file-margins: 8px 32px;
   --inline-title-size: 1.125em;
   --inline-title-weight: 600;
   --inline-title-margin-bottom: 1rem;
-  --p-spacing: 1.75rem;
   --heading-spacing: 2em;
   --list-spacing: 0.075em;
   --list-indent: 2em;
@@ -33,7 +131,7 @@ body {
   --nav-indentation-guide-color: var(--background-modifier-border);
   --nav-collapse-icon-color: var(--text-muted);
   --nav-collapse-icon-color-collapsed: var(--text-muted);
-  --nav-item-background-active: var(--background-modifier-hover);
+  --nav-item-background-active: color-mix(in srgb, var(--heading_color) var(--um-nav-active-tint), var(--background-primary));
   --nav-item-background-hover: var(--background-modifier-hover);
   --nav-item-color: var(--text-muted);
   --nav-item-color-active: var(--text-normal);
@@ -48,6 +146,7 @@ body {
   --search-result-background: var(--background-primary);
   --setting-items-background: transparent;
   --setting-items-border-width: 0;
+  --modal-border-color: var(--background-modifier-border);
   --metadata-label-font-size: calc(var(--font-ui-small) * 1.07);
   --metadata-input-font-size: var(--metadata-label-font-size);
   --metadata-input-height: calc(var(--metadata-input-font-size) * 2.2);
@@ -71,12 +170,12 @@ body {
   --caret-color: var(--text-title);
   --heading-formatting: var(--text-title);
   --inline-title-color: var(--text-title);
-  --h1-color: var(--text-title);
-  --h2-color: var(--text-title);
-  --h3-color: var(--text-title);
-  --h4-color: var(--text-title);
-  --h5-color: var(--text-title);
-  --h6-color: var(--text-title);
+  --h1-color: color-mix(in srgb, var(--heading_h1_color) var(--um-heading-color-intensity), var(--text-normal));
+  --h2-color: color-mix(in srgb, var(--heading_h2_color) var(--um-heading-color-intensity), var(--text-normal));
+  --h3-color: color-mix(in srgb, var(--heading_h3_color) var(--um-heading-color-intensity), var(--text-normal));
+  --h4-color: color-mix(in srgb, var(--heading_h4_color) var(--um-heading-color-intensity), var(--text-normal));
+  --h5-color: color-mix(in srgb, var(--heading_h5_color) var(--um-heading-color-intensity), var(--text-normal));
+  --h6-color: color-mix(in srgb, var(--heading_h6_color) var(--um-heading-color-intensity), var(--text-normal));
   --link-color: var(--link_color);
   --link-color-hover: var(--heading_color);
   --link-external-color: var(--external_link_color);
@@ -103,6 +202,12 @@ body {
 
 body ::selection {
   color: var(--text-selection-foreground);
+}
+
+/* File explorer: hover discret, sélection persistante et repère latéral. */
+.nav-file-title.is-active,
+.nav-folder-title.is-active {
+  box-shadow: inset var(--um-nav-active-indicator-width) 0 0 var(--heading_color);
 }
 
 :is(
@@ -132,6 +237,128 @@ body ::selection {
   --divider-color: var(--input-border-color);
   --background-modifier-border: var(--input-border-color);
   --tab-outline-color: var(--input-border-color);
+}
+
+/* Settings: une hiérarchie discrète, sans cartes ni fonds lourds. */
+body .modal.mod-settings {
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.modal.mod-settings .vertical-tab-header {
+  background: var(--background-primary);
+  border-inline-end: 1px solid var(--background-modifier-border);
+  padding: 1.1em 0.7em;
+}
+
+.vertical-tab-header-group-title {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  padding: 0.8em 0.65em 0.45em;
+}
+
+.vertical-tab-nav-item {
+  border: 1px solid transparent;
+  border-inline-start: 2px solid transparent;
+  border-radius: 0 4px 4px 0;
+  margin-block: 1px;
+  padding: 0.48em 0.65em;
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.vertical-tab-nav-item:hover:not(.is-active) {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.vertical-tab-nav-item.is-active {
+  background: color-mix(in srgb, var(--heading_color) 9%, var(--background-primary));
+  border-inline-start-color: var(--heading_color);
+  color: var(--text-normal);
+  font-weight: 600;
+}
+
+.modal.mod-settings .vertical-tab-content {
+  padding-inline: 1.25em;
+}
+
+.modal.mod-settings .setting-item {
+  border-top: 1px solid var(--background-modifier-border);
+  padding-block: var(--um-settings-row-spacing);
+  gap: 1.25em;
+}
+
+.modal.mod-settings .setting-item-heading {
+  border-top: 0;
+  padding-block: 1.3em 0.45em;
+}
+
+.modal.mod-settings .setting-item-heading .setting-item-name {
+  color: var(--heading_color);
+  font-size: var(--font-ui-medium);
+  font-weight: 650;
+}
+
+.modal.mod-settings .setting-item-name {
+  color: var(--text-normal);
+  font-weight: 600;
+}
+
+.modal.mod-settings .setting-item-description {
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 54em;
+}
+
+.modal.mod-settings .setting-item-control {
+  gap: 0.55em;
+}
+
+.modal.mod-settings .setting-item-control button:not(.clickable-icon) {
+  border-radius: 4px;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.modal.mod-settings .setting-item-control button:not(.mod-cta):not(.clickable-icon) {
+  border: 1px solid var(--input-border-color);
+}
+
+.modal.mod-settings .setting-item-control button:not(.mod-cta):not(.clickable-icon):hover {
+  border-color: var(--input-border-color-hover);
+}
+
+.modal.mod-settings :is(input, textarea, select, .dropdown, .combobox-button):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--heading_color) 42%, transparent);
+  outline-offset: 2px;
+}
+
+.modal.mod-settings :is(input[type="checkbox"], input[type="radio"], input[type="range"]) {
+  accent-color: var(--action_color);
+}
+
+@media (max-width: 720px) {
+  .modal.mod-settings .vertical-tab-content {
+    padding-inline: 0.75em;
+  }
+
+  .modal.mod-settings .setting-item {
+    gap: 0.8em;
+  }
+}
+
+body.um-monochrome-headings .markdown-source-view,
+body.um-monochrome-headings .markdown-preview-view {
+  --h1-color: var(--text-title);
+  --h2-color: var(--text-title);
+  --h3-color: var(--text-title);
+  --h4-color: var(--text-title);
+  --h5-color: var(--text-title);
+  --h6-color: var(--text-title);
 }
 
 .metadata-container {

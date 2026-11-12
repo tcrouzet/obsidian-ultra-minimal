@@ -1,0 +1,115 @@
+/* Ultra Minimal — Tokyo Night
+   Palette complète : tons neutres réversibles et accents adaptés à chaque mode.
+   N’activer qu’un seul snippet de couleur à la fois. */
+:root {
+  --solarized-base03: #1a1b26; /* Fond sombre principal. */
+  --solarized-base02: #24283b; /* Surface sombre. */
+  --solarized-base01: #4c505e; /* Texte en mode clair. */
+  --solarized-base00: #565f89; /* Ton intermédiaire sombre. */
+  --solarized-base0: #737aa2; /* Ton intermédiaire clair. */
+  --solarized-base1: #c0caf5; /* Texte en mode sombre. */
+  --solarized-base2: #c8cbd3; /* Surface claire. */
+  --solarized-base3: #e1e2e7; /* Fond clair principal. */
+}
+
+body.theme-light {
+  --solarized-blue: #3659a8;
+  --solarized-cyan: #1b7476;
+  --solarized-violet: #6345a6;
+  --solarized-orange: #9a4b1d;
+  --solarized-red: #ad4146;
+  --solarized-yellow: #776010;
+  --solarized-green: #4e6b2d;
+  --solarized-magenta: #985178;
+  --link_color: var(--solarized-blue);
+  --heading_color: var(--solarized-blue);
+  --heading_h1_color: var(--solarized-blue);
+  --heading_h2_color: var(--solarized-cyan);
+  --heading_h3_color: var(--solarized-green);
+  --heading_h4_color: var(--solarized-violet);
+  --heading_h5_color: var(--solarized-orange);
+  --heading_h6_color: var(--solarized-magenta);
+  --external_link_color: var(--solarized-violet);
+  --action_color: var(--solarized-orange);
+  --error_color: var(--solarized-red);
+  --highlight_color: var(--solarized-yellow);
+  --success_color: var(--solarized-green);
+  --chart_color: var(--solarized-magenta);
+  --tag_color: var(--solarized-orange);
+  --yaml_key_color: var(--solarized-orange);
+  --yaml_value_color: var(--solarized-green);
+  --separator_color: var(--solarized-violet);
+  --color-blue: var(--link_color);
+  --color-blue-rgb: 54, 89, 168;
+  --color-cyan: var(--solarized-cyan);
+  --color-cyan-rgb: 27, 116, 118;
+  --color-purple: var(--external_link_color);
+  --color-purple-rgb: 99, 69, 166;
+  --color-orange: var(--solarized-orange);
+  --color-orange-rgb: 154, 75, 29;
+  --color-red: var(--error_color);
+  --color-red-rgb: 173, 65, 70;
+  --color-yellow: var(--highlight_color);
+  --color-yellow-rgb: 119, 96, 16;
+  --color-green: var(--success_color);
+  --color-green-rgb: 78, 107, 45;
+  --color-pink: var(--chart_color);
+  --color-pink-rgb: 152, 81, 120;
+  --accent-h: 22.080;
+  --accent-s: 68.306%;
+  --accent-l: 35.882%;
+  --interactive-accent-rgb: 154, 75, 29;
+  --background-modifier-hover: rgba(var(--color-blue-rgb), 0.06);
+  --text-highlight-bg: rgba(var(--color-yellow-rgb), 0.25);
+}
+
+body.theme-dark {
+  --solarized-blue: #7aa2f7;
+  --solarized-cyan: #7dcfff;
+  --solarized-violet: #bb9af7;
+  --solarized-orange: #ff9e64;
+  --solarized-red: #f7768e;
+  --solarized-yellow: #e0af68;
+  --solarized-green: #9ece6a;
+  --solarized-magenta: #bb9af7;
+  --link_color: var(--solarized-blue);
+  --heading_color: var(--solarized-blue);
+  --heading_h1_color: var(--solarized-blue);
+  --heading_h2_color: var(--solarized-cyan);
+  --heading_h3_color: var(--solarized-green);
+  --heading_h4_color: var(--solarized-violet);
+  --heading_h5_color: var(--solarized-orange);
+  --heading_h6_color: var(--solarized-magenta);
+  --external_link_color: var(--solarized-violet);
+  --action_color: var(--solarized-orange);
+  --error_color: var(--solarized-red);
+  --highlight_color: var(--solarized-yellow);
+  --success_color: var(--solarized-green);
+  --chart_color: var(--solarized-magenta);
+  --tag_color: var(--solarized-orange);
+  --yaml_key_color: var(--solarized-orange);
+  --yaml_value_color: var(--solarized-green);
+  --separator_color: var(--solarized-violet);
+  --color-blue: var(--link_color);
+  --color-blue-rgb: 122, 162, 247;
+  --color-cyan: var(--solarized-cyan);
+  --color-cyan-rgb: 125, 207, 255;
+  --color-purple: var(--external_link_color);
+  --color-purple-rgb: 187, 154, 247;
+  --color-orange: var(--solarized-orange);
+  --color-orange-rgb: 255, 158, 100;
+  --color-red: var(--error_color);
+  --color-red-rgb: 247, 118, 142;
+  --color-yellow: var(--highlight_color);
+  --color-yellow-rgb: 224, 175, 104;
+  --color-green: var(--success_color);
+  --color-green-rgb: 158, 206, 106;
+  --color-pink: var(--chart_color);
+  --color-pink-rgb: 187, 154, 247;
+  --accent-h: 22.452;
+  --accent-s: 100.000%;
+  --accent-l: 69.608%;
+  --interactive-accent-rgb: 255, 158, 100;
+  --background-modifier-hover: rgba(var(--color-blue-rgb), 0.10);
+  --text-highlight-bg: rgba(var(--color-yellow-rgb), 0.25);
+}

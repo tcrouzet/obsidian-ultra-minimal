@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { readFileSync, renameSync, rmSync, watch, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { customize } from "./customize.ts";
 import { compilePalette } from "./palette.ts";
@@ -31,7 +31,7 @@ export function build(root = ROOT): void {
   writeAtomic(join(root, "theme.css"), output);
 }
 
-if (import.meta.main) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const rebuild = () => {
     try {
       build();
@@ -43,8 +43,14 @@ if (import.meta.main) {
     }
   };
   if (process.argv.includes("--watch")) {
+    // Source TypeScript files live in scripts/, not at the repository root.
+    // Watch both directories so every documented input can trigger a rebuild.
     watch(ROOT, (_, file) => {
-      if (file === "palette.css" || file === "hider.css") rebuild();
+      const name = String(file ?? "");
+      if (["palette.css", "hider.css", "manifest.json"].includes(name)) rebuild();
+    });
+    watch(join(ROOT, "scripts"), (_, file) => {
+      if (String(file ?? "").endsWith(".ts")) rebuild();
     });
   }
   rebuild();

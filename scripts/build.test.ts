@@ -37,8 +37,17 @@ test("root CSS is reproducible, standalone and uses native Obsidian variables", 
   assert.ok(Buffer.byteLength(output) < 100_000);
   assert.doesNotMatch(output, /minimal-|@import|!important|:has\(/);
   assert.match(output, /--font-text-theme: "SF Mono", SFMono-Regular, ui-monospace, Consolas, "DejaVu Sans Mono", monospace/);
-  assert.match(output, /--font-text-size: 23px/);
-  assert.match(output, /--file-line-width: var\(--text_max_width\)/);
+  assert.match(output, /--um-font-text-size: 23px/);
+  assert.match(output, /--font-text-size: var\(--um-font-text-size\)/);
+  assert.match(output, /--file-line-width: var\(--um-text-width\)/);
+  assert.match(output, /--h1-color: color-mix/);
+  assert.match(output, /--h6-color: color-mix/);
+  assert.match(output, /name: Ultra Minimal/);
+  assert.match(output, /vertical-tab-nav-item\.is-active/);
+  assert.match(output, /--nav-item-background-active: color-mix/);
+  assert.match(output, /nav-file-title\.is-active/);
+  assert.match(output, /is-hidden-frameless:not\(\.is-fullscreen\) \.workspace-tabs\.mod-top-left-space \.workspace-tab-header-container/);
+  assert.match(output, /padding-inline-start: 80px/);
 });
 
 test("palette changes update native color channels, accents and text width", t => {
@@ -131,6 +140,21 @@ test("invalid manifest versions preserve the previous stylesheet", t => {
   }
 });
 
+test("extended color snippets provide mode-specific accents and preserve neutral inversion", () => {
+  const directory = join(ROOT, "snippets", "colors");
+  const names = ["Tokyo Night.css", "Tokyo Night Storm.css", "Catppuccin Mocha Peach.css", "Espresso Cream.css", "Ayu Mirage.css"];
+  for (const name of names) {
+    const css = readFileSync(join(directory, name), "utf8");
+    assert.match(css, /:root\s*\{/);
+    assert.match(css, /body\.theme-light\s*\{/);
+    assert.match(css, /body\.theme-dark\s*\{/);
+    assert.match(css, /--color-blue-rgb:/);
+    assert.match(css, /--color-orange-rgb:/);
+    assert.match(css, /--heading_h1_color:/);
+    assert.match(css, /--heading_h6_color:/);
+  }
+});
+
 test("dev watch rebuilds after palette, hider CSS and TypeScript changes", { timeout: 15_000 }, async t => {
   const root = fixture(t);
   const child = spawn(process.execPath, ["--watch", "scripts/build.ts", "--watch"], { cwd: root });
@@ -156,8 +180,8 @@ test("dev watch rebuilds after palette, hider CSS and TypeScript changes", { tim
       } else if (stage === "hider" && output.endsWith("\n.prompt-instructions { display: none; }\n")) {
         stage = "typescript";
         const typography = join(root, "scripts/customize.ts");
-        writeFileSync(typography, readFileSync(typography, "utf8").replace("--font-text-size: 23px", "--font-text-size: 24px"));
-      } else if (stage === "typescript" && output.includes("--font-text-size: 24px")) {
+        writeFileSync(typography, readFileSync(typography, "utf8").replace("--um-font-text-size: 23px", "--um-font-text-size: 24px"));
+      } else if (stage === "typescript" && output.includes("--um-font-text-size: 24px")) {
         stage = "done";
         break;
       }
@@ -167,7 +191,7 @@ test("dev watch rebuilds after palette, hider CSS and TypeScript changes", { tim
     assert.match(output, /--solarized-blue: #278bd2;/);
     assert.match(output, /--color-blue-rgb: 39, 139, 210;/);
     assert.ok(output.endsWith("\n.prompt-instructions { display: none; }\n"));
-    assert.match(output, /--font-text-size: 24px/);
+    assert.match(output, /--um-font-text-size: 24px/);
   } finally {
     t.signal.removeEventListener("abort", abort);
     lines.close();

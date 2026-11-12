@@ -41,7 +41,7 @@ Edge reveal requires the ribbon to be enabled and the right sidebar to be expand
 
 ## Optional palettes
 
-Brume 7 is the default palette and needs no snippet. Optional snippets replace its neutral tones; accents, typography and interface behavior stay the same.
+Brume 7 is the default palette and needs no snippet. Optional palette snippets replace the neutral tones and, for the five extended schemes, their accent colors too. Each extended scheme defines matching light and dark variants while preserving Ultra Minimal's restrained typography and surfaces.
 
 | Palette | Tones | Light text contrast | Dark text contrast |
 | --- | --- | --- | --- |
@@ -52,6 +52,11 @@ Brume 7 is the default palette and needs no snippet. Optional snippets replace i
 | [Brume5](snippets/colors/Brume5.css) | Blue gray | 5.18:1 | 6.26:1 |
 | [Sauge](snippets/colors/Sauge.css) | Gray green | 5.15:1 | 6.04:1 |
 | [Brume9](snippets/colors/Brume9.css) | Brume with stronger text contrast | 9.04:1 | 9.05:1 |
+| [Tokyo Night](snippets/colors/Tokyo%20Night.css) | Night blue, lavender and cyan | 6.20:1 | 10.59:1 |
+| [Tokyo Night Storm](snippets/colors/Tokyo%20Night%20Storm.css) | Softer storm-blue variant | 6.34:1 | 9.02:1 |
+| [Catppuccin Mocha Peach](snippets/colors/Catppuccin%20Mocha%20Peach.css) | Mocha / Latte neutrals with peach accent | 7.06:1 | 11.34:1 |
+| [Espresso Cream](snippets/colors/Espresso%20Cream.css) | Espresso brown and warm cream | 7.75:1 | 10.06:1 |
+| [Ayu Mirage](snippets/colors/Ayu%20Mirage.css) | Blue-gray with warm orange accents | 5.73:1 | 9.60:1 |
 
 Ratios are calculated for body text in light mode and in dark mode, using the [WCAG relative luminance formula](https://www.w3.org/WAI/WCAG22/Techniques/general/G18). 
 
@@ -87,6 +92,14 @@ To regenerate the snippets from the local sources:
 ```bash
 npm run fonts
 ```
+
+## Headings and settings
+
+Headings H1–H6 use six restrained accent tones derived from the active palette. Their strength is blended with the body text color so they remain integrated with the writing surface. The File Explorer distinguishes hover from selection: the active file or folder gets a soft accent tint and a thin lateral marker. To return to a single heading color, enable **Style Settings → Ultra Minimal → Headings → Monochrome headings**. The heading color intensity can also be adjusted there.
+
+Ultra Minimal exposes optional controls through the [Style Settings plugin](https://github.com/mgmeyers/obsidian-style-settings): body text size, text column width, paragraph spacing, heading colors, selected-file tint and spacing inside the Settings interface. The plugin is optional; the theme keeps its defaults and colored headings without it. The Settings pane itself receives subtle navigation states, section hierarchy, separators and visible keyboard focus, without adding heavy cards or changing Obsidian's layout.
+
+Only enable one file from `snippets/colors/` at a time. Font snippets remain independent and can be combined with one palette.
 
 ## Edit and build
 
@@ -137,3 +150,7 @@ From the repository's default branch, with `gh` authenticated and `jq` installed
 The script verifies the build, increments the patch version in `manifest.json`, commits and pushes the current changes, then creates and pushes the matching numeric tag. A tag collision, rejected push or remote manifest mismatch stops publication.
 
 [GitHub Actions](.github/workflows/release.yml) rebuilds the theme with Node.js 24.12.0, runs the tests, checks that the tag matches the manifest, attests the files and publishes `theme.css` and `manifest.json` as release assets.
+
+## Sidebar toggle spacing
+
+In frameless desktop windows, the left file/search tab row reserves 80 px for the native sidebar toggle. This keeps the toggle accessible without overlapping the Files icon.

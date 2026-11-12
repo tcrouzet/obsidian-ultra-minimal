@@ -37,7 +37,7 @@ export function compilePalette(css: string): string {
   }
   for (const name of definitions.keys()) if (name !== "text_max_width") resolve(name);
   const colors = {
-    blue: "link_color", cyan: "heading_color", purple: "external_link_color",
+    blue: "link_color", cyan: "solarized-cyan", purple: "external_link_color",
     orange: "solarized-orange", red: "error_color", yellow: "highlight_color",
     green: "success_color", pink: "chart_color",
   };

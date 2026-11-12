@@ -22,7 +22,7 @@
 /* Couleurs du thème ; inversion automatique des tons en mode sombre.
    Filets, contours et boutons neutres : mélanges du fond principal et du texte.
    Focus : ton du texte discret. Survols : bleu en transparence. Sélections : tons opaques de la palette.
-   Charts utilise toujours l'orange Solarized pour sa couleur 5 ; cyan Solarized reste disponible sans affectation par défaut.
+   Charts utilise les accents de la palette ; cyan Solarized est exposé séparément.
    Les couleurs propres aux plugins et moteurs de coloration syntaxique peuvent rester indépendantes. */
 :root {
   --screen_background: var(--solarized-base3);      /* Éditeur et lecture, panneaux latéraux gauche et droit, onglets, ruban de commandes ; texte des actions et notifications. */
@@ -41,7 +41,13 @@
   --faint_text: var(--solarized-base1);             /* Texte discret, marqueurs de listes, signes Markdown et contours de focus. */
   --inverse_background: var(--solarized-base03);    /* Fond des notifications dans les deux modes ; les autres fonds sombres sont calculés par inversion. */
   --link_color: var(--solarized-blue);              /* Liens internes et des réglages, survols en transparence, boutons d'action survolés ; couleur 1 de Charts. */
-  --heading_color: var(--solarized-blue);           /* Titres H1-H6 et titre de note, curseur, liens survolés et variations de l'accent ; couleur 7 de Charts. */
+  --heading_color: var(--solarized-blue);           /* Titre de note, curseur, liens survolés et variations de l'accent. */
+  --heading_h1_color: var(--solarized-blue);        /* H1 : accent principal. */
+  --heading_h2_color: var(--solarized-cyan);        /* H2 : cyan. */
+  --heading_h3_color: var(--solarized-green);       /* H3 : vert. */
+  --heading_h4_color: var(--solarized-violet);      /* H4 : violet. */
+  --heading_h5_color: var(--solarized-orange);      /* H5 : orange. */
+  --heading_h6_color: var(--solarized-magenta);     /* H6 : magenta. */
   --external_link_color: var(--solarized-blue);     /* Liens externes en édition et lecture ; couleur 6 de Charts. */
   --action_color: var(--solarized-orange);          /* Boutons d'action (.mod-cta), cases cochées, interrupteurs actifs et contrôles utilisant l'accent Obsidian. */
   --error_color: var(--solarized-red);              /* Erreurs, actions destructives et liens non résolus ; couleur 2 de Charts. */

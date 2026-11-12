@@ -53,6 +53,12 @@ body {
   display: none;
 }
 
+/* Fenêtres sans barre de titre native : réserver la zone du bouton de sidebar
+   pour éviter qu'il chevauche l'onglet Fichiers (et garder le bouton accessible). */
+.is-hidden-frameless:not(.is-fullscreen) .workspace-tabs.mod-top-left-space .workspace-tab-header-container {
+  padding-inline-start: 80px;
+}
+
 /* Autres commandes de la première barre : repli du panneau, nouvel onglet, liste. */
 .workspace-split.mod-primary-split :is(.sidebar-toggle-button, .workspace-tab-header-new-tab, .workspace-tab-header-tab-list) {
   display: none;
