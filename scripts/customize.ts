@@ -105,6 +105,10 @@ body ::selection {
   color: var(--text-selection-foreground);
 }
 
+.modal.mod-settings .vertical-tab-content a {
+  color: var(--link_color);
+}
+
 :is(
   input:not([type]),
   input[type="text"], input[type="search"], input[type="email"],
